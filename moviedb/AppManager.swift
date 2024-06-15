@@ -98,19 +98,19 @@ class MovieDetailManager: ObservableObject {
         let castUrl = "https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=\(apiKey)"
         let videosUrl = "https://api.themoviedb.org/3/movie/\(movieId)/videos?api_key=\(apiKey)"
         
-        AF.request(castUrl).responseDecodable(of: CastResponse.self) { response in
+        AF.request(castUrl).responseDecodable(of: CastResponse.self) { [weak self] response in
             switch response.result {
             case .success(let castResponse):
-                self.cast = castResponse.cast
+                self?.cast = castResponse.cast
             case .failure(let error):
                 print("Error fetching cast: \(error)")
             }
         }
         
-        AF.request(videosUrl).responseDecodable(of: VideoResponse.self) { response in
+        AF.request(videosUrl).responseDecodable(of: VideoResponse.self) { [weak self] response in
             switch response.result {
             case .success(let videoResponse):
-                self.videos = videoResponse.results
+                self?.videos = videoResponse.results
             case .failure(let error):
                 print("Error fetching videos: \(error)")
             }
