@@ -8,29 +8,60 @@
 import XCTest
 @testable import moviedb
 
-final class moviedbTests: XCTestCase {
+class ContentViewUITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        continueAfterFailure = false
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        let app = XCUIApplication()
+        app.launch()
+        
+        let searchField = app.textFields["Search movies..."]
+        XCTAssertTrue(searchField.exists, "Search field should exist")
+        searchField.tap()
+        searchField.typeText("Avengers")
+        app.buttons["Search"].tap()
+        
+        let firstMovieCell = app.tables.cells.element(boundBy: 0)
+        XCTAssertTrue(firstMovieCell.exists, "First movie cell should exist")
+        firstMovieCell.tap()
+        
+        let favoriteButton = app.buttons["star"]
+        XCTAssertTrue(favoriteButton.exists, "Favorite button should exist")
+        favoriteButton.tap()
+        
+        app.navigationBars["Movie Details"].buttons["Movies"].tap()
+    }
+}
+
+class MovieDetailManagerTests: XCTestCase {
+    
+    var movieDetailManager: MovieDetailManager!
+    
+    override func setUp() {
+        super.setUp()
+        movieDetailManager = MovieDetailManager()
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    override func tearDown() {
+        movieDetailManager = nil
+        super.tearDown()
+    }
+
+    func testFetchMovieDetails() {
+        let expectation = XCTestExpectation(description: "Fetch movie details expectation")
+        let movieId = 56789 // Replace with a valid movie ID from TMDB
+        
+        movieDetailManager.fetchMovieDetails(movieId: movieId)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            XCTAssertFalse(self.movieDetailManager.cast.isEmpty, "Cast should not be empty")
+            XCTAssertFalse(self.movieDetailManager.videos.isEmpty, "Videos should not be empty")
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 10.0)
     }
-
 }

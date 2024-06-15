@@ -16,6 +16,14 @@
 		F5DE03342C1D348700F00A48 /* moviedbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE03332C1D348700F00A48 /* moviedbTests.swift */; };
 		F5DE033E2C1D348700F00A48 /* moviedbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE033D2C1D348700F00A48 /* moviedbUITests.swift */; };
 		F5DE03402C1D348700F00A48 /* moviedbUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE033F2C1D348700F00A48 /* moviedbUITestsLaunchTests.swift */; };
+		F5DE034F2C1D367A00F00A48 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F5DE034E2C1D367A00F00A48 /* Alamofire */; };
+		F5DE03512C1D36B100F00A48 /* MovieDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE03502C1D36B100F00A48 /* MovieDBModel.swift */; };
+		F5DE03532C1D371600F00A48 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE03522C1D371600F00A48 /* AppManager.swift */; };
+		F5DE03552C1D37BB00F00A48 /* FavoriteMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE03542C1D37BB00F00A48 /* FavoriteMovie.swift */; };
+		F5DE03582C1D3D3C00F00A48 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F5DE03572C1D3D3C00F00A48 /* SDWebImageSwiftUI */; };
+		F5DE035A2C1D46AC00F00A48 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE03592C1D46AC00F00A48 /* MovieDetailView.swift */; };
+		F5DE035D2C1D477200F00A48 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = F5DE035C2C1D477200F00A48 /* YouTubePlayerKit */; };
+		F5DE03612C1D552700F00A48 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DE03602C1D552700F00A48 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +56,11 @@
 		F5DE03392C1D348700F00A48 /* moviedbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = moviedbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5DE033D2C1D348700F00A48 /* moviedbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviedbUITests.swift; sourceTree = "<group>"; };
 		F5DE033F2C1D348700F00A48 /* moviedbUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviedbUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F5DE03502C1D36B100F00A48 /* MovieDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBModel.swift; sourceTree = "<group>"; };
+		F5DE03522C1D371600F00A48 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		F5DE03542C1D37BB00F00A48 /* FavoriteMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovie.swift; sourceTree = "<group>"; };
+		F5DE03592C1D46AC00F00A48 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		F5DE03602C1D552700F00A48 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5DE03582C1D3D3C00F00A48 /* SDWebImageSwiftUI in Frameworks */,
+				F5DE034F2C1D367A00F00A48 /* Alamofire in Frameworks */,
+				F5DE035D2C1D477200F00A48 /* YouTubePlayerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +98,7 @@
 				F5DE03322C1D348700F00A48 /* moviedbTests */,
 				F5DE033C2C1D348700F00A48 /* moviedbUITests */,
 				F5DE031B2C1D348500F00A48 /* Products */,
+				F5DE034D2C1D367A00F00A48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,7 +116,12 @@
 			isa = PBXGroup;
 			children = (
 				F5DE031D2C1D348500F00A48 /* moviedbApp.swift */,
+				F5DE03502C1D36B100F00A48 /* MovieDBModel.swift */,
+				F5DE03522C1D371600F00A48 /* AppManager.swift */,
 				F5DE031F2C1D348500F00A48 /* ContentView.swift */,
+				F5DE03542C1D37BB00F00A48 /* FavoriteMovie.swift */,
+				F5DE03592C1D46AC00F00A48 /* MovieDetailView.swift */,
+				F5DE03602C1D552700F00A48 /* Helper.swift */,
 				F5DE03212C1D348700F00A48 /* Assets.xcassets */,
 				F5DE03262C1D348700F00A48 /* Persistence.swift */,
 				F5DE03282C1D348700F00A48 /* moviedb.xcdatamodeld */,
@@ -133,6 +155,13 @@
 			path = moviedbUITests;
 			sourceTree = "<group>";
 		};
+		F5DE034D2C1D367A00F00A48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +178,11 @@
 			dependencies = (
 			);
 			name = moviedb;
+			packageProductDependencies = (
+				F5DE034E2C1D367A00F00A48 /* Alamofire */,
+				F5DE03572C1D3D3C00F00A48 /* SDWebImageSwiftUI */,
+				F5DE035C2C1D477200F00A48 /* YouTubePlayerKit */,
+			);
 			productName = moviedb;
 			productReference = F5DE031A2C1D348500F00A48 /* moviedb.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +255,11 @@
 				Base,
 			);
 			mainGroup = F5DE03112C1D348500F00A48;
+			packageReferences = (
+				F5DE034C2C1D366D00F00A48 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F5DE03562C1D3D3300F00A48 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				F5DE035B2C1D476900F00A48 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+			);
 			productRefGroup = F5DE031B2C1D348500F00A48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,9 +303,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5DE03272C1D348700F00A48 /* Persistence.swift in Sources */,
+				F5DE03552C1D37BB00F00A48 /* FavoriteMovie.swift in Sources */,
+				F5DE03532C1D371600F00A48 /* AppManager.swift in Sources */,
 				F5DE03202C1D348500F00A48 /* ContentView.swift in Sources */,
 				F5DE032A2C1D348700F00A48 /* moviedb.xcdatamodeld in Sources */,
+				F5DE03612C1D552700F00A48 /* Helper.swift in Sources */,
 				F5DE031E2C1D348500F00A48 /* moviedbApp.swift in Sources */,
+				F5DE035A2C1D46AC00F00A48 /* MovieDetailView.swift in Sources */,
+				F5DE03512C1D36B100F00A48 /* MovieDBModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +476,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"moviedb/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = moviedb/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,6 +505,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"moviedb/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = moviedb/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -590,6 +636,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F5DE034C2C1D366D00F00A48 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		F5DE03562C1D3D3300F00A48 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.4;
+			};
+		};
+		F5DE035B2C1D476900F00A48 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F5DE034E2C1D367A00F00A48 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5DE034C2C1D366D00F00A48 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		F5DE03572C1D3D3C00F00A48 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5DE03562C1D3D3300F00A48 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		F5DE035C2C1D477200F00A48 /* YouTubePlayerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5DE035B2C1D476900F00A48 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
+			productName = YouTubePlayerKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F5DE03282C1D348700F00A48 /* moviedb.xcdatamodeld */ = {

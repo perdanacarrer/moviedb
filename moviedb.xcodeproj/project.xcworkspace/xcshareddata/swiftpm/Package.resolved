@@ -1,0 +1,42 @@
+{
+  "originHash" : "2d9c296d93e54f5c4b15dde5463766ad8e3783d7220d888ecc3476afd582a47e",
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "b8523c1642f3c142b06dd98443ea7c48343a4dfd",
+        "version" : "5.19.3"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
+      "state" : {
+        "revision" : "b7af5e6bd9c2987e41730400d1baad13d74a141a",
+        "version" : "3.0.4"
+      }
+    },
+    {
+      "identity" : "youtubeplayerkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SvenTiigi/YouTubePlayerKit.git",
+      "state" : {
+        "revision" : "5ade0dfbabaf7456069b4e8f604de261bf6d7c67",
+        "version" : "1.8.0"
+      }
+    }
+  ],
+  "version" : 3
+}

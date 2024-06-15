@@ -6,81 +6,101 @@
 //
 
 import SwiftUI
-import CoreData
+import SDWebImageSwiftUI
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @ObservedObject var connectionManager = ConnectionManager()
+    @State private var searchQuery = ""
+    @State private var emptyString = ""
+    @State private var favoriteMovies: [Movie] = []
+    @State private var isNetworkConnected = true
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+            VStack {
+                ZStack(alignment: .leading) {
+                    TextField("", text: $emptyString)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
+                            .padding(.leading, 20)
+                        TextField("Search movies...", text: $searchQuery, onCommit: {
+                            connectionManager.fetchMovies(query: searchQuery)
+                        })
+                            .foregroundColor(.black)
+                            .padding(.trailing, 20)
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+
+                if !favoriteMovies.isEmpty {
+                    Text("Favorite Movies")
+                        .font(.headline)
+                        .padding(.leading)
+                        .padding(.top, 10)
+                    FavoriteMoviesCarousel(favoriteMovies: $favoriteMovies)
+                        .padding(.vertical)
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+
+                List(connectionManager.movies) { movie in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(movie.title)
+                                .font(.headline)
+                            if let releaseDate = movie.releaseDate {
+                                Text(releaseDate)
+                                    .font(.subheadline)
+                            } else {
+                                Text("Unknown Release Date")
+                                    .font(.subheadline)
+                            }
+                            Text(movie.overview)
+                                .font(.body)
+                                .lineLimit(3)
+                        }
+                        Spacer()
+                        if let posterPath = movie.posterPath {
+                            WebImage(url: URL(string: "https://image.tmdb.org/t/p/w200\(posterPath)"))
+                                .resizable()
+                                .transition(.fade(duration: 0.5))
+                                .frame(width: 50, height: 75)
+                                .cornerRadius(8)
+                        }
+                        Button(action: {
+                            toggleFavorite(movie: movie)
+                        }) {
+                            Image(systemName: favoriteMovies.contains(movie) ? "star.fill" : "star")
+                                .foregroundColor(favoriteMovies.contains(movie) ? .yellow : .gray)
+                        }
                     }
                 }
+                .onAppear {
+                    checkNetworkStatus()
+                    connectionManager.fetchPopularMovies()
+                }
+                .overlay(
+                    Text(connectionManager.movies.isEmpty ? "No Data" : "")
+                        .padding()
+                )
             }
-            Text("Select an item")
+            .navigationBarTitle("Movies")
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    private func toggleFavorite(movie: Movie) {
+        if let index = favoriteMovies.firstIndex(of: movie) {
+            favoriteMovies.remove(at: index)
+        } else {
+            favoriteMovies.append(movie)
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    private func checkNetworkStatus() {
+        isNetworkConnected = NetworkReachability.shared.isConnected()
+        if !isNetworkConnected {
+            connectionManager.movies = connectionManager.loadMoviesFromCoreData()
         }
     }
-}
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
